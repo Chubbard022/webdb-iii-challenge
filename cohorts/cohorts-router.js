@@ -20,7 +20,7 @@ router.get("/",(req,res)=>{
     })
     .catch(err=>{
         console.log(err)
-        res.status(400).json({message: "cannot GET data"})
+        res.status(400).json({message: "cannot find cohort data"})
     })
 })
 
@@ -28,11 +28,11 @@ router.get("/:id",(req,res)=>{
     db("cohort")
     .where({id: req.params.id})
     .first()
-    .then(animal=>{
-        if(animal){
-            res.status(200).json(animal)
+    .then(student=>{
+        if(student){
+            res.status(200).json(student)
         }else{
-            res.status(404).json({Message: "role not found"})
+            res.status(404).json({Message: "student not found"})
         }
     })
     .catch(err=>{
@@ -44,11 +44,11 @@ router.get("/:id/students",(req,res)=>{
     db("cohort")
     .where({id: req.params.id})
     .first()
-    .then(animal=>{
-        if(animal){
-            res.status(200).json(animal)
+    .then(student=>{
+        if(student){
+            res.status(200).json(student)
         }else{
-            res.status(404).json({Message: "role not found"})
+            res.status(404).json({Message: "student not found"})
         }
     })
     .catch(err=>{
@@ -63,8 +63,8 @@ router.post("/",(req,res)=>{
         db("cohort")
             .where({id: ids[0]})
             .first()
-            .then(member=>{
-                res.status(201).json(member)
+            .then(student=>{
+                res.status(201).json(student)
             })
             .catch(err=>{
                 res.status(500).json(err)

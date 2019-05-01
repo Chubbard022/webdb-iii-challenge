@@ -15,7 +15,7 @@ exports.up = function(knex) {
        integer('roles_id')
       .unsigned()
       .references('id') // column
-      .inTable('roles') // table
+      .inTable('cohort') // table
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
 
