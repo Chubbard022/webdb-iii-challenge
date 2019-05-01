@@ -1,4 +1,7 @@
-{
+{"name": "webdb-iii-challenge",
+  "version": "1.0.0",
+  "description": "challenge Project for Web DB III Module",
+  "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
     "start": "node index.js"
