@@ -14,34 +14,18 @@ const db = knex(knexConfig);
 //------------------------------------------------------------------
 //------------------------------------------------------------------
 router.get("/",(req,res)=>{
-    db("cohort")
-    .then(animal=>{
-        res.status(200).json(animal)
+    db("students")
+    .then(student=>{
+        res.status(200).json(student)
     })
     .catch(err=>{
         console.log(err)
-        res.status(400).json({message: "cannot find cohort data"})
+        res.status(400).json({message: "cannot find students data"})
     })
 })
 
 router.get("/:id",(req,res)=>{
-    db("cohort")
-    .where({id: req.params.id})
-    .first()
-    .then(student=>{
-        if(student){
-            res.status(200).json(student)
-        }else{
-            res.status(404).json({Message: "student not found"})
-        }
-    })
-    .catch(err=>{
-        res.status(500).json(err)
-    })
-})
-
-router.get("/:id/students",(req,res)=>{
-    db("cohort")
+    db("students")
     .where({id: req.params.id})
     .first()
     .then(student=>{
@@ -57,10 +41,10 @@ router.get("/:id/students",(req,res)=>{
 })
 
 router.post("/",(req,res)=>{
-    db("cohort")
+    db("students")
     .insert(req.body,"id")
     .then(ids=>{
-        db("cohort")
+        db("students")
             .where({id: ids[0]})
             .first()
             .then(student=>{
@@ -76,16 +60,16 @@ router.post("/",(req,res)=>{
 })
 
 router.put('/:id', (req, res) => {
-    db('cohort')
+    db('students')
     .where({ id: req.params.id })
     .update(req.body)
     .then(count => {
         if (count > 0) {
             res.status(200).json({
-            message: `${count} ${count > 1 ? 'records' : 'record'} updated`
+            message: `${count} ${count > 1 ? 'students' : 'student'} updated`
         });
         } else {
-            res.status(404).json({ message: 'Role does not exist' });
+            res.status(404).json({ message: 'students does not exist' });
         }
     })
     .catch(err => {
@@ -94,14 +78,14 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete("/:id",(req,res)=>{
-    db("cohort")
+    db("students")
     .where({id: req.params.id})
     .del()
     .then(count =>{
         if(count > 0) {
-            res.status(200).json({message: `${count} ${count > 1 ? 'records' : 'record'} deleted`})
+            res.status(200).json({message: `${count} ${count > 1 ? 'students' : 'student'} deleted`})
         }else {
-            res.status(404).json({ message: 'Role does not exist' });
+            res.status(404).json({ message: 'students does not exist' });
         }
     })
     .catch(err => {
