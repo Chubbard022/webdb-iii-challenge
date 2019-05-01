@@ -12,7 +12,7 @@ exports.up = function(knex) {
             .notNullable()
 
         tbl.
-       integer('roles_id')
+      integer('roles_id')
       .unsigned()
       .references('id') // column
       .inTable('cohort') // table

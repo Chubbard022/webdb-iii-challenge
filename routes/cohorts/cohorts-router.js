@@ -41,9 +41,8 @@ router.get("/:id",(req,res)=>{
 })
 
 router.get("/:id/students",(req,res)=>{
-    db("cohort")
-    .where({id: req.params.id})
-    .first()
+    db("students")
+    .where({roles_id: req.params.id})
     .then(student=>{
         if(student){
             res.status(200).json(student)
