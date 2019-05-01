@@ -2,7 +2,7 @@
 
 ## Topics
 
-X Databases
+X` Databases
 - Relational Databases
 - Knex migrations.
 - Seeding data.
